@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/536a7d8830.js" crossorigin="anonymous"></script>
+  
+    <style>
+            html {
+              scroll-behavior: smooth;
+            }
+            .sticky {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                }
+
+            .sticky + .content {
+            padding-top: 102px;
+            }
+    </style>            
+    <title>{{ data.username }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- staring tailwind -->
+
+
+    <!-- header  -->
+    <div id="myHeader">
+        <header class="text-gray-500 bg-teal-900 body-font">
+                <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+                <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+                        <span style="font-size: 2rem"><i class="fab fa-skyatlas"></i> </span>
+                          CVSite  @{{ data.username }}
+                </a>
+                <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+                    <a href="#intro" class="mr-5 hover:text-white">TOP</a>
+                    {% if data.level1|length>0 or data.level2|length>0 or data.level3|length>0  %}
+                    <a href="#edu" class="mr-5 hover:text-white">EDUCATION</a>
+                    {% endif %}
+                    {% if skills|length>0 %}
+                    <a href="#skills" class="mr-5 hover:text-white">SKILLS</a>
+                    {% endif %}
+                    {% if data.pro_title1|length>0 or data.pro_title2|length>0 or data.pro_title3|length>0 or data.pro_title4|length>0 %}
+                    <a href="#projects" class="mr-5 hover:text-white">PROJECTS</a>
+                    {% endif %}
+                    {% if data.title1|length>0 or data.title2|length>0 %}
+                    <a href="#workex" class="mr-5 hover:text-white">WORK EXPERIENCE</a>
+                    {% endif %}
+                </nav>
+                
+                </button>
+                </div>
+        </header>
+    </div>
+    <!-- header  -->
+    <!-- intro  -->
+    <div id="intro">
+    <section style="padding-top: 2rem" class="text-gray-500 bg-gray-900 body-font">
+        <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+        <img class="lg:w-1/6 md:w-1/6 w-1/6 mb-10 object-cover object-center rounded-full" alt="hero" src="{{ url_for('static', filename='DP/'+data.profile_pic) }}" >
+        <div class="text-center lg:w-2/3 w-full">
+            <h1 id='demo' style="font-family: 'Orbitron', sans-serif" class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white"></h1>
+            <br> <center><hr width="50%"></center> <br>
+            <p style="font-size: 20px" class="leading-relaxed mb-8">{{ data.header }}</p>
+            <div class="flex justify-center">
+            </div>
+        </div>
+        </div>
+    </section>
+    </div>
+    <!-- intro  -->
+
+    <!-- education  -->
+    
+    <div id="edu">
+      {% if data.level1|length>0 or data.level2|length>0 or data.level3|length>0  %}
+        
+<section class="text-gray-500 bg-gray-900 body-font overflow-hidden">
+        <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; text-align: center; text-decoration-color: white;">EDUCATION</h1>
+    
+    
+            <div class="container px-5 py-24 mx-auto">
+              <div class="-my-8">
+                {% if data.level1 %}     
+                <div class="py-8 flex border-t-2 border-gray-800 flex-wrap md:flex-no-wrap">
+                  <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                    <span class="tracking-widest font-medium title-font text-white">{{ data.level1 }}</span>
+                    <!-- <span class="mt-1 text-gray-600 text-sm">12 Jun 2019</span> -->
+                  </div>
+                  <div class="md:flex-grow">
+                    <h2 class="text-2xl font-medium text-white title-font mb-2">{{ data.institute1 }}</h2>
+                    <br>
+                    <p class="leading-relaxed">{{ data.grade1 }}</p>
+                    
+                  </div>
+                </div>
+                {% endif %}
+                {% if data.level2 %}     
+                <div class="py-8 flex border-t-2 border-gray-800 flex-wrap md:flex-no-wrap">
+                  <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                    <span class="tracking-widest font-medium title-font text-white">{{ data.level2 }}</span>
+                    <!-- <span class="mt-1 text-gray-600 text-sm">12 Jun 2019</span> -->
+                  </div>
+                  <div class="md:flex-grow">
+                    <h2 class="text-2xl font-medium text-white title-font mb-2">{{ data.institute2 }}</h2>
+                    <br>
+                    <p class="leading-relaxed">{{ data.grade2 }}</p>
+                    
+                  </div>
+                </div>
+                {% endif %}
+                {% if data.level3 %}     
+                <div class="py-8 flex border-t-2 border-gray-800 flex-wrap md:flex-no-wrap">
+                  <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                    <span class="tracking-widest font-medium title-font text-white">{{ data.level3 }}</span>
+                    <!-- <span class="mt-1 text-gray-600 text-sm">12 Jun 2019</span> -->
+                  </div>
+                  <div class="md:flex-grow">
+                    <h2 class="text-2xl font-medium text-white title-font mb-2">{{ data.institute3 }}</h2>
+                    <br>
+                    <p class="leading-relaxed">{{ data.grade3 }}</p>
+                    
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+         
+        </section>
+        {% endif %}
+    </div>
+    <!-- education  -->
+
+    <!-- skills -->
+    <div id="skills">
+      {% if skills|length>0 %}
+    <section class="text-gray-500 bg-gray-900 body-font">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; text-align: center; text-decoration-color: white;">SKILLS</h1>
+            <div class="container px-5 py-24 mx-auto">
+             
+              <div class="text-center mb-20">
+                <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-white mb-4">These are my major skills</h1>
+                <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto"></p>
+              </div>
+              <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+                {% for skill in skills %}
+                  <div class="p-2 sm:w-1/2 w-full">
+                    <div class="bg-gray-800 rounded flex p-4 h-full items-center">
+                      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-teal-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                        <path d="M22 4L12 14.01l-3-3"></path>
+                      </svg>
+                      <span class="title-font font-medium text-white">{{skill}}</span>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+              <!-- <br><br>
+              <center><hr width="50%"></center> -->
+              </div>
+          </section>
+          {% endif %}
+        </div>
+
+    <!-- projects  -->
+    <div id="projects">
+      {% if data.pro_title1|length>0 or data.pro_title2|length>0 or data.pro_title3|length>0 or data.pro_title4|length>0 %}
+        
+    <section class="text-gray-500 body-font bg-gray-900">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; text-align: center; text-decoration-color: white;">PROJECTS</h1>
+            <div class="container px-5 py-24 mx-auto">
+              
+              <div class="flex flex-wrap">
+                {% if data.pro_title1 %}
+                
+                <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-800">
+                  <h2 class="text-lg sm:text-xl text-white font-medium title-font mb-2">{{ data.pro_title1 }}</h2>
+                  <p class="leading-relaxed text-base mb-4">{{ data.pro_desc1 }}</p>
+                  <a  href="{{ data.pro_link1 }}" class="text-teal-500 inline-flex items-center">demo link
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
+                {% endif %}
+                {% if data.pro_title2 %}
+                <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-800">
+                  <h2 class="text-lg sm:text-xl text-white font-medium title-font mb-2">{{ data.pro_title2 }}</h2>
+                  <p class="leading-relaxed text-base mb-4">{{ data.pro_desc2 }}</p>
+                  <a  href="{{ data.pro_link2 }}" class="text-teal-500 inline-flex items-center">demo link
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
+                {% endif %}
+                {% if data.pro_title3 %}
+                <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-800">
+                  <h2 class="text-lg sm:text-xl text-white font-medium title-font mb-2">{{ data.pro_title3 }}</h2>
+                  <p class="leading-relaxed text-base mb-4">{{ data.pro_desc3 }}</p>
+                  <a  href="{{ data.pro_link3 }}" class="text-teal-500 inline-flex items-center">demo link
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
+
+                {% endif %}
+                {% if data.pro_title4 %}
+                <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-800">
+                  <h2 class="text-lg sm:text-xl text-white font-medium title-font mb-2">{{ data.pro_title4 }}</h2>
+                  <p class="leading-relaxed text-base mb-4">{{ data.pro_desc4 }}</p>
+                  <a  href="{{ data.pro_link4 }}" class="text-teal-500 inline-flex items-center">demo link
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
+
+                {% endif %}
+                </div>          
+              
+          </section>
+          {% endif %}
+        </div>
+
+    <!-- work experience -->
+    <div id="workex">
+        {% if data.title1|length>0 or data.title2|length>0 %}
+
+    <section class="text-gray-500 bg-gray-900 body-font overflow-hidden">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; text-align: center; text-decoration-color: white;">WORK EXPERIENCE</h1>
+            
+            <div class="container px-5 py-24 mx-auto">
+              <div class="flex flex-wrap -m-12">
+                {% if data.catg1 %}
+                  
+                <div class="p-12 md:w-1/2 flex flex-col items-start">
+                  <span class="inline-block py-1 px-3 rounded bg-gray-800 text-gray-500 text-sm font-medium tracking-widest">{{ data.catg1 }}</span>
+                  <h2 class="sm:text-3xl text-2xl title-font font-medium text-white mt-4 mb-4">{{ data.title1 }}</h2>
+                  
+                  <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-800 mt-auto w-full">
+                    <p class="leading-relaxed mb-8">{{ data.desc1 }}</p>
+  
+                  </div>
+                  
+                </div>
+                {% endif %}
+                {% if data.catg2 %}
+                  
+           
+                <div class="p-12 md:w-1/2 flex flex-col items-start">
+                  <span class="inline-block py-1 px-3 rounded bg-gray-800 text-gray-500 text-sm font-medium tracking-widest">{{ data.catg2 }}</span>
+                  <h2 class="sm:text-3xl text-2xl title-font font-medium text-white mt-4 mb-4">{{ data.title2 }}</h2>
+                  
+                  <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-800 mt-auto w-full">
+                    <p class="leading-relaxed mb-8">{{ data.desc2 }}</p>
+                  </div>
+                  <a class="inline-flex items-center">
+                    <!-- <img alt="blog" src="https://dummyimage.com/103x103" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"> -->
+                    <span class="flex-grow flex flex-col pl-4">
+                      <!-- <span class="title-font font-medium text-white">Alper Kamu</span>
+                      <span class="text-gray-600 text-sm">DESIGNER</span> -->
+                    </span>
+                  </a>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+           {% if data.resume %}
+            <a href="{{ url_for('static', filename='cv/'+data.resume) }}"><button class="flex mx-auto mt-16 text-white bg-teal-500 border-0 py-2 px-8 focus:outline-none hover:bg-teal-600 rounded text-lg">DOWNLOAD RESUME</button></a>
+           {% endif %}  
+            
+        {% endif %}
+          </section></div>
+
+    <!-- footer  -->
+    <footer class="text-gray-500 bg-gray-900 body-font">
+            <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+              <a href="{{ url_for('core.index') }}" class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+                    <i class="fab fa-skyatlas"></i>
+                <span class="ml-3 text-xl">CVSite</span>
+              </a>
+              <p class="text-sm text-gray-600 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">© 2020 CVSite —
+                <a href="https://twitter.com/skrstv123" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">@skrstv123</a>
+              </p>
+              <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+                <a href="{{ data.fb }}" class="text-gray-600">
+                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                  </svg>
+                </a>
+                <a href="{{ data.twt }}" class="ml-3 text-gray-600">
+                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                  </svg>
+                </a>
+                <a href="{{ data.ig }}" class="ml-3 text-gray-600">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                  </svg>
+                </a>
+                <a href="{{ data.lkn }}" class="ml-3 text-gray-600">
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                    <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                  </svg>
+                </a>
+              </span>
+            </div>
+          </footer>
+
+    <!-- ending tailwind -->
+
+    <!-- typing anim -->
+    <script>
+            var i = 0;
+            var txt = "{{data.name}}";
+            var speed = 50;
+            
+            function typeWriter() {
+              if (i < txt.length) {
+                
+                document.getElementById("demo").innerHTML += txt.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+              }
+            }
+            typeWriter();
+    </script>
+    <!-- fix header  -->
+    <script>
+            window.onscroll = function() {myFunction()};
+            
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+            
+            function myFunction() {
+              if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+              } else {
+                header.classList.remove("sticky");
+              }
+            }
+    </script>
+    <!-- section size  -->
+    <script language="javascript">
+            function autoResizeDiv(var)
+            {
+                document.getElementById(var).style.height = window.innerHeight +'px';
+            }
+            window.onresize = autoResizeDiv;
+            autoResizeDiv("intro");
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br><br>
+<center><h1 id='demo' style="font-family: 'Orbitron', sans-serif" class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white"></h1>
+</center>
+<script>
+        var i = 0;
+        var txt = 'Lorem ipsum dummy text blabla.';
+       
+        var speed = 50;
+        
+        function typeWriter() {
+          if (i < txt.length) {
+            
+            document.getElementById("demo").innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+          }
+        }
+        typeWriter();
+</script>
+{% endblock content %}

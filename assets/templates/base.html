@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CV MAKER</title>
+    <style>
+            html {
+              scroll-behavior: smooth;
+            }
+            .sticky {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                }
+
+            .sticky + .content {
+            padding-top: 102px;
+            }
+    </style>   
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/536a7d8830.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900">
+    <div id="myHeader">
+    <header class="text-gray-500 bg-gray-900 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <a href="{{ url_for('core.index') }}" class="flex title-font font-medium items-center text-white-900 mb-4 md:mb-0">
+                <span style="font-size: 2rem"><i class="fab fa-skyatlas"></i> </span>
+            <span class="ml-3 text-xl">CVsite
+              {% if current_user.is_authenticated %}
+                @{{current_user.username}}</span>
+              {% else %}
+                  </span>
+              {% endif %}
+          </a>  
+          <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('cv.mainform') }}" class="mr-5 hover:text-teal-200"> <b> BUILD CV </b> </a>
+            <a href="{{ url_for('cv.help') }}" class="mr-5 hover:text-teal-200"> <b> HELP </b> </a>
+            <a href="{{ url_for('users.change_password') }}" class="mr-5 hover:text-teal-200"> <b>CHANGE PASSWORD </b> </a>
+            <a href="{{ url_for('users.delete_account') }}" class="mr-5 hover:text-red-200"> <b>DELETE ACCOUNT </b> </a>
+            <a href="{{ url_for('users.logout') }}"><button class="inline-flex items-center border-0 py-1 px-3 focus:outline-none hover:text-red-200 rounded"> <b>LOGOUT</b> 
+            </button></a>
+            {% else %}
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+
+                <a href="{{ url_for('users.login') }}" class="mr-5 hover:text-teal-200"> <b> LOGIN </b> </a>
+                <a href="{{ url_for('users.register') }}" class="mr-5 hover:text-teal-200"> <b> REGISTER </b> </a>
+            </nav>
+            {% endif %}
+        </div>
+      </header>
+      <hr>
+      </div>
+      {% block content %}
+          
+      {% endblock content %}
+      <script>
+            window.onscroll = function() {myFunction()};
+            
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+            
+            function myFunction() {
+              if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+              } else {
+                header.classList.remove("sticky");
+              }
+            }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous">
+    </script>
+    
+    <script>
+      $(".closealertbutton").click(function (e) {
+      pid = $(this).parent().parent().hide(500)
+      console.log(pid)
+      
+    })
+    </script>
+</body>
+</html>
